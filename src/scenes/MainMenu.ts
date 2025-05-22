@@ -2,7 +2,7 @@ import { Scene, GameObjects } from 'phaser';
 
 export class MainMenu extends Scene {
     background: GameObjects.Image;
-    logo: GameObjects.Image;
+    play_btn: GameObjects.Image;
     title: GameObjects.Text;
     main_menu_alien_popup: GameObjects.Sprite;
 
@@ -12,8 +12,13 @@ export class MainMenu extends Scene {
 
     create() {
         this.background = this.add.image(360, 640, 'background');
-        this.logo = this.add.image(360, 800, 'play_btn');
-
+        this.play_btn = this.add.image(360, 800, 'play_btn');
+        this.play_btn.setInteractive();
+        let alien_blink_timeout: NodeJS.Timeout ;
+        this.play_btn.on("pointerdown", () => {
+            if (alien_blink_timeout) clearTimeout(alien_blink_timeout)
+            this.scene.start('Level1');
+        });
         this.main_menu_alien_popup = this.add.sprite(620, 1180, "main_menu_alien_popup")
         this.anims.create({
             key: 'alien_popup',
@@ -30,8 +35,8 @@ export class MainMenu extends Scene {
         })
         setTimeout(() => {
             this.main_menu_alien_popup.anims.play('alien_popup');
-            setTimeout( () => {
-                this.main_menu_alien_popup.anims.play('alien_blink');
+            alien_blink_timeout = setTimeout(() => {
+                  this.main_menu_alien_popup.anims.play('alien_blink');
             }, 2000)
 
         }, 1000)

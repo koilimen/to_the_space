@@ -32,6 +32,11 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
         this.load.image('play_btn', 'play_btn.png');
+        this.load.image('joystick_pad', 'joystick_pad.png');
+        this.load.image('joystick_pulp', 'joystick_pulp.png');
+        this.load.image('fire_button', 'fire_button.png');
+        this.load.image('rocket', 'rocket_body.png');
+
         this.load.spritesheet("main_menu_alien_popup", "alien_main_menu_animation_popup_sprite.png", {frameWidth: 201, frameHeight: 199})
         this.load.spritesheet("main_menu_alien_blink", "alien_main_menu_animation_blink_sprite.png", {frameWidth: 200, frameHeight: 200})
 
